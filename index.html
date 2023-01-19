@@ -15,11 +15,48 @@
 
 
 <body>
+    
+   
+      
+      
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div>
+            Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+          </div>
+          <div class="row">
+            <div class="col-6"><div class="dropdown mt-3">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                  Number of Hearts
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a id="oneHeartButton" class="dropdown-item" href="#">One Heart</a></li>
+                  <li><a id="threeHeartButton" class="dropdown-item" href="#">Three Heart</a></li>
+                  <li><a id="fiveHeartButton" class="dropdown-item" href="#">Five Heart</a></li>
+                </ul>
+              </div></div>
+            <div class="col-6"><div class="dropdown mt-3">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                Oppenent Select
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">PVP</a></li>
+              <li><a class="dropdown-item" href="#">Advanced A.I</a></li>
+            </ul>
+          </div></div>
+          </div>
+          
+        </div>
+      </div>
+   
     <div class="menu">
-        <button class="menuButton">
+        <button id="questionMark" class="menuButton btn btn-primary"  data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
             <img src="./Assets/ask.png" alt="" class="questionMark">
         </button>
-        
     </div>
     <div class="row">
         <p class="titleText"> Rock Paper Scissors Lizard Spock</p>
@@ -28,39 +65,39 @@
     <div class="container-fluid deepBackground">
         <div class="container-fluid gameCanvas">
             <div class="row">
-                <p class="roundText">Round 1</p>
+                <p id="roundText" class="roundText">Round 1</p>
             </div>
             <div class="row buttonRow">
                 <div class="col-1"></div>
                 <div class="col-2 ">
-                    <button class="gameButtons">
+                    <button id="" class="gameButtons stone">
                         <img src="./Assets/stone.png" alt="" class="gameIcons">
                     </button>
                 </div>
                 <div class="col-2">
-                    <button class="gameButtons">
+                    <button id="" class="gameButtons paper">
                         <img src="./Assets/toilet-roll.png" alt="" class="gameIcons">
                     </button>
                 </div>
                 <div class="col-2">
-                    <button class="gameButtons">
+                    <button id="" class="gameButtons scissors">
                         <img src="./Assets/scissors.png" alt="" class="gameIcons">
                     </button>
                 </div>
                 <div class="col-2">
-                    <button class="gameButtons">
+                    <button id="" class="gameButtons lizard">
                         <img src="./Assets/iguana.png" alt="" class="gameIcons">
                     </button>
                 </div>
                 <div class="col-2">
-                    <button class="gameButtons">
+                    <button id="" class="gameButtons spock">
                         <img src="./Assets/star-trek.png" alt="" class="gameIcons">
                     </button>
                 </div>
                 <div class="col-1"></div>
             </div>
             <div class="row">
-                <p class="playerPrompt">Choose Your Weapon</p>
+                <p id="promptText" class="playerPrompt">Choose Your Weapon</p>
             </div>
         </div>
     </div>
@@ -73,12 +110,12 @@
         <div class="col-6"><p class="playerText">Player 2</p></div>
     </div>
     <div class="row">
-        <div class="col-6 d-flex justify-content-center">
+        <div id="playerOneHeartInject" class="col-6 d-flex justify-content-center">
             <i>
                 <img src="./Assets/heart.png" alt="" class="oneHeart">
             </i>
         </div>
-        <div class="col-6 d-flex justify-content-center">
+        <div id="playerTwoHeartInject" class="col-6 d-flex justify-content-center">
             <i>
                 <img src="./Assets/heart.png" alt="" class="oneHeart">
             </i>

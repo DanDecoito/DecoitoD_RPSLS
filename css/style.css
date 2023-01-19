@@ -84,3 +84,27 @@ body {
     top: 796px;
 
 }
+
+.overlay {
+   /* display: none; */
+    background-color: rgb(84, 74, 74);
+    height: 900px;
+    width: 800px;
+    left: 300px;
+    top: 50px;
+    position: absolute;
+    z-index: 1;
+   
+} 
+.rules {
+    height: 450px;
+    width: 600px;
+}
+.menuRounds {
+    font-size: 38px;
+    text-align: center;
+    color: #0091AD;
+    font-family: 'Lemon', cursive;
+    padding-top: 20px;
+}
+
