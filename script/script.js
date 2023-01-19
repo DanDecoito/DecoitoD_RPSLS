@@ -8,40 +8,29 @@ let spockBtn = document.getElementById("spockBtn");
 let promptText = document.getElementById("promptText");
 const gameButtons = document.querySelectorAll(".gameButtons")
 let oneHeartButton = document.getElementById("oneHeartButton");
+let threeHeartButton = document.getElementById("threeHeartButton");
+let fiveHeartButton = document.getElementById("fiveHeartButton");
 const url = 'https://scottsrpsls.azurewebsites.net/api/RockPaperScissors/GetRandomOption'
 let roundNum = 0;
-
-
+let apiFetch;
+let startNumber;
 
 let playerOneHealth = 0
 let playerTwoHealth = 0
 
-oneHeartButton.addEventListener("click", function(){
-    roundNum = 1
-    console.log("One heart button")
-    let fullHeart1 = document.createElement("img")
-    fullHeart1.className = "oneHeart"
-    fullHeart1.src ="../Assets/heart.png"
-    playerOneHeartInject.appendChild(fullHeart1);
-    
-
-
-})
-
-
 async function computerSelect()
 {
-    let stuff;
+    
     await fetch(url).then(
         response => response.text()
     ).then(
         data => {
-          return data
-          
+          apiFetch = data
         }
     )
-    
 }
+
+
 
 function loseHealthP1() {
     let emptyHeart = document.createElement("img")
@@ -78,20 +67,18 @@ function battle(playerSelect, computerSelect) {
     case (playerSelect === "Paper" && computerSelect === "Spock"):
     case (playerSelect === "Spock" && computerSelect === "Rock"):
     case (playerSelect === "Rock" && computerSelect === "Scissors"):
-        promptText.innerHTML = "Player 1 wins"
+        promptText.innerHTML = "Player 2 wins"
         playerOneHealth -= 1;
-        loseHealthP1()
+        console.log(computerSelect)
+        console.log(playerSelect)
         break;
     default:
-        promptText.innerHTML = "player 2 wins"
+        promptText.innerHTML = "player 1 wins"
         playerTwoHealth -= 1;
-        loseHealthP2();
+        console.log(computerSelect)
+        console.log(playerSelect)
         break;
-
     }
-
-    
-
 }
 // -----------------------
 function healthCheck (playerOneHealth, playerTwoHealth){
@@ -103,9 +90,11 @@ function healthCheck (playerOneHealth, playerTwoHealth){
             promptText.innerHTML = "Player 2 Wins"
             roundText.innerHTML = "Game Over"
             loseHealthP1()
+            alert("Player 2 Wins");
+            window.location.reload();
             break;
         default:
-            console.log("HealthCheck Error")
+            break
     }
     switch (playerTwoHealth)
     {
@@ -113,12 +102,13 @@ function healthCheck (playerOneHealth, playerTwoHealth){
             promptText.innerHTML = "Player 1 Wins"
             roundText.innerHTML = "Game Over"
             loseHealthP2()
+            alert("Player 2 wins")
+            window.location.reload();
             break;
-        default:
-            console.log("HealthCheck Error")
-    }
-    
 
+        default:
+            break;
+    }
 }
 
 function reset() {
@@ -129,40 +119,51 @@ function reset() {
 
 //------------------------
 function counter() {
+ 
     roundNum += 1;
     roundText.innerText = `Round: ${roundNum}`;
     console.log(`round num is ${roundNum}`)
     return roundNum;
+   
+    
   }
 
 // --------------------------
-function game(num) {
+function game() {
+    computerSelect();
+    let num = window.prompt("Enter Number of Rounds")
+    
     playerOneHealth = num
     playerTwoHealth = num 
     let playerSelect;
-    let computerSelect = "Rock"
+    
    gameButtons.forEach((weapon) =>
     {
         weapon.addEventListener("click", () => 
         {
-            if (weapon.classList.contains('stone')) {
+            if (weapon.classList.contains('stone'))
+             {
                 playerSelect = "Rock"
-                
+                computerSelect();
             }
             else if (weapon.classList.contains('paper')) {
                 playerSelect = "Paper"
+                computerSelect();
             }
             else if (weapon.classList.contains('scissors')) {
                 playerSelect = "Scissors"
+                computerSelect();
             }
             else if (weapon.classList.contains('lizard')) {
                 playerSelect = "Lizard"
+                computerSelect();
             }
             else if (weapon.classList.contains('spock')) {
                 playerSelect = "Spock"
+                computerSelect();
             }
-            console.log(playerSelect)
-            battle(playerSelect, computerSelect)
+           
+            battle(playerSelect, apiFetch)
             counter();
             healthCheck(playerOneHealth, playerTwoHealth)
             reset();
@@ -171,7 +172,110 @@ function game(num) {
 }
 
 
-game(roundNum)
+function PVPgame(num) {
+    computerSelect();
+    playerOneHealth = num
+    playerTwoHealth = num 
+    let playerSelect;
+    let player2Select;
+   gameButtons.forEach((weapon) =>
+    {
+        weapon.addEventListener("click", () => 
+        {
+            if (weapon.classList.contains('stone'))
+             {
+               
 
+            }
+            else if (weapon.classList.contains('paper')) {
+                playerSelect = "Paper"
+                computerSelect();
+            }
+            else if (weapon.classList.contains('scissors')) {
+                playerSelect = "Scissors"
+                computerSelect();
+            }
+            else if (weapon.classList.contains('lizard')) {
+                playerSelect = "Lizard"
+                computerSelect();
+            }
+            else if (weapon.classList.contains('spock')) {
+                playerSelect = "Spock"
+                computerSelect();
+            }
+            console.log(playerSelect)
+            battle(playerSelect, apiFetch)
+            counter();
+            healthCheck(playerOneHealth, playerTwoHealth)
+            reset();
+        })
+    })
+}
+
+
+
+
+
+
+
+
+
+
+
+function ModeSelect(){
+   
+    
+        oneHeartButton.addEventListener("click", function(){
+        console.log("One heart button")
+        let fullHeart1 = document.createElement("img")
+        fullHeart1.className = "oneHeart"
+        fullHeart1.src ="../Assets/heart.png"
+        playerOneHeartInject.innerHTML = ""
+        playerOneHeartInject.appendChild(fullHeart1);
+        startNumber = 1
+        roundNum = 0;
+        roundText.innerHTML = "Round 1"
+        promptText.innerHTML = "Player 1 choose"
+        
+        game(startNumber)
+    })
+    threeHeartButton.addEventListener("click", function(){
+        roundNum = 1
+        console.log("three heart button")
+        let fullHeart1 = document.createElement("img")
+        fullHeart1.className = "oneHeart"
+        fullHeart1.src ="../Assets/heart.png"
+        playerOneHeartInject.innerHTML = ""
+        playerOneHeartInject.appendChild(fullHeart1);
+        startNumber = 3
+        roundNum = 0;
+        roundText.innerHTML = "Round 1"
+        promptText.innerHTML = "Player 1 choose"
+        game(startNumber)
+    })
+        fiveHeartButton.addEventListener("click", function(){
+        roundNum = 1
+        console.log("Five heart button")
+        let fullHeart1 = document.createElement("img")
+        fullHeart1.className = "oneHeart"
+        fullHeart1.src ="../Assets/heart.png"
+        playerOneHeartInject.innerHTML = ""
+        playerOneHeartInject.appendChild(fullHeart1);
+        startNumber = 5
+        roundNum = 0;
+        roundText.innerHTML = "Round 1"
+        promptText.innerHTML = "Player 1 choose"
+        game(startNumber)
+    })  
+}
+
+
+
+function pvpCheck() {
+
+    let choice = window.prompt("Enter PVP or AI")
+    game()
+
+}
 
 
